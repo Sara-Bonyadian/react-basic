@@ -17,12 +17,24 @@
     console.log("Day.js loaded");
     console.log(dayjs().format('MMM D'));
     const today = dayjs().format('MMM D');
+    const time=dayjs().format('HH:mm:ss');
     const message = <div>
       <p>Today's date is {today}</p>
+        <p>Current time is {time}</p>
     </div>;
-
+   
       const container = document.querySelector('.js-container');
-      ReactDOM.createRoot(container).render(message);
+      const root=ReactDOM.createRoot(container);
+      root.render(message);
+
+      setInterval(()=>{
+        const newTime=dayjs().format('HH:mm:ss');
+        const updatedMessage=<div>
+          <p>Today's date is {today}</p>
+          <p>Current time is {newTime}</p>
+        </div>;
+        root.render(updatedMessage);
+      },1000);
     </script>
   </body>
 </html>
